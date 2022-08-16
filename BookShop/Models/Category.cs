@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-//relationship: Category - Book: 
+//relationship: Category - Book: Many To Many
 namespace BookShop.Models
 {
     public class Category
