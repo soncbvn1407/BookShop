@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BookShop.Models
 {
+    //Category - Book: One To Many
+    //Category - Detailed: Many To One
     public class Category
     {
         public int Id { get; set; } //PK
@@ -14,8 +16,13 @@ namespace BookShop.Models
         public string Name { get; set; }
 
         //set thuộc tính liên kết sang bảng Book
-        //relationship: Category - Book: 1 To Many
         public ICollection<Book> Books { get; set; }
+
+        [Required]
+        [Display(Name = "Country Name")]
+        public int DetailedId { get; set; }
+
+        public Detailed Detailed { get; set; }
 
     }
 }
