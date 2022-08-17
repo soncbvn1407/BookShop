@@ -1,0 +1,37 @@
+﻿@model BookShop.Models.Detailed
+
+<div class="container col-md-6 text-center mt-3">
+    <table class="table table-bordered">
+        <tr>
+            <th colspan="2" class="h3 bg-light text-success">@Model.Name</th>
+        </tr>
+        <tr>
+            <th colspan="1">Category List</th>
+            <td>
+                @foreach (var category in Model.Categories)
+                {
+                    <a class="font-weight-bold text-italic" asp-controller="Category" asp-action="Detail" asp-route-id="@category.Id">
+                        @category.Name
+                    </a>
+                    <br />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>Book List</th>
+            <td>
+                @foreach (var category in Model.Categories)
+                {
+                    @foreach (var book in category.Books)
+                    {
+                        <a class="font-weight-bold text-italic" asp-controller="Book" asp-action="Detail" asp-route-id="@book.Id">
+                            @book.Name : @book.Price $
+                        </a>
+                        <br />
+                    }
+                    <br />
+                }
+            </td>
+        </tr>
+    </table>
+</div>
