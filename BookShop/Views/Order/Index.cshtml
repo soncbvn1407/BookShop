@@ -6,10 +6,10 @@
         <p class="alert alert-info text-primary">@TempData["Message"]</p>
     }
     <div class="row my-5">
-        <h3 class="text text-danger text-center">Order List</h3>
+        <h3 class="text text-success text-center">Order List</h3>
         <div class="col">
             <table class="table table-bordered">
-                <tr>
+                <tr class="text-primary">
                     <th>Order Id</th>
                     <th>Customer Email</th>
                     <th>Order Quantity</th>
@@ -20,15 +20,15 @@
                 </tr>
                 @foreach (var order in Model)
                 {
-                    <tr>
+                    <tr class="font-weight-bold">
                         <td>@order.Id</td>
                         <td>@order.UserEmail</td>
                         <td>@order.OrderQuantity</td>
-                        <td>@order.OrderPrice</td>
+                        <td class="text-danger">@order.OrderPrice $</td>
                         <td>@order.OrderDate</td>
-                        <td>5</td>
+                        <td></td>
                         <td>
-                            <a class="btn btn-warning" asp-controller="Order" asp-action="Accept" asp-route-id="@order.Id">
+                            <a class="btn btn-warning text-white" asp-controller="Order" asp-action="Accept" asp-route-id="@order.Id">
                                 Accept
                             </a>
                             <a class="btn btn-success" asp-controller="Order" asp-action="Reject" asp-route-id="@order.Id">

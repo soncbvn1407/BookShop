@@ -39,8 +39,13 @@ namespace BookShop.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
-            var order = context.Book.Find(id);
-            context.Book.Remove(order);
+            var order = context.Order.Find(id);
+            var b = context.Book.Find(order.BookId);
+            b.Quantity = b.Quantity + order.OrderQuantity;
+            
+            
+            
+            context.Order.Remove(order);
             context.SaveChanges();
             TempData["Message"] = "Delete order successfully !";
             return RedirectToAction("Index");

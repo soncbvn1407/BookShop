@@ -16,6 +16,8 @@ namespace BookShop.Controllers
             context = applicationDbContext;
         }
 
+        
+
         //load toàn bộ dữ liệu từ bảng
         [Authorize(Roles = "Admin")]
         public IActionResult Index()
@@ -36,6 +38,7 @@ namespace BookShop.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
+            // tao object book 
             var book = context.Book.Find(id);
             context.Book.Remove(book);
             context.SaveChanges();
