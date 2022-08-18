@@ -16,8 +16,8 @@
         </tr>
         <tr>
             <th>Book Id</th>
-            <th>Book Name</th>
             <th>Book Image</th>
+            <th>Book Name</th>
             <th>Action</th>
         </tr>
         @foreach (var book in Model)
@@ -30,7 +30,7 @@
                     </a>
                 </td>
                 <td>
-                        @book.Name
+                    @book.Name
                 </td>
                 <td>
                     <a class="btn btn-warning" asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id">

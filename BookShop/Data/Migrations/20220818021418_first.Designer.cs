@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220817073830_first")]
+    [Migration("20220818021418_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -315,14 +315,14 @@ namespace BookShop.Data.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "b17e0c82-48e2-4ac7-956e-259c5ab7c52c",
+                            ConcurrencyStamp = "1a4433c2-acb7-45cd-b774-9ea073aa1685",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "5a8a163c-87d2-4599-999d-d4ffd0148146",
+                            ConcurrencyStamp = "389841dd-385c-4d59-be6d-6a4b959661e7",
                             Name = "Customer",
                             NormalizedName = "Customer"
                         });
@@ -421,14 +421,14 @@ namespace BookShop.Data.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "eef5f1af-d0c0-444d-8288-fe69fca939d3",
+                            ConcurrencyStamp = "5f6a3cef-cd95-48b2-9198-fe2c7b9f7016",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ5sala6QCtPPf42KLdZVkQV+meTjNkygrnNDoJtOVM72CYaqfiy07Ihd2bVQssNhA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEM25Y0AQR723EDU+lL8+n2jO6E4kXwQVdR5H++0j3TnfTPgKX7T+CoEo5b0o0cB5dg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "09877106-c48e-4ece-b265-003f912cbdc2",
+                            SecurityStamp = "29aa3c8b-2848-4174-b6b5-34e0c4ca443e",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -436,13 +436,14 @@ namespace BookShop.Data.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6a36c2c5-6651-4268-bb1f-fc691276a6ea",
+                            ConcurrencyStamp = "947dc7f1-99db-4f88-9010-c8350046fb2c",
                             Email = "customer@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "customer@gmail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAECD/Enn+q5u/Evmk0X8N2ceQWPLUaWgQDjwsY3Y9LLpMqV4v3fORQlEb+TCJxemaNw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2f24a51a-c0d1-4c7d-b55e-def45725cdfb",
+                            SecurityStamp = "728fa366-f5fc-4212-9734-a9955027af23",
                             TwoFactorEnabled = false,
                             UserName = "customer@gmail.com"
                         });

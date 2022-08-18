@@ -92,8 +92,8 @@ namespace BookShop.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "1", "b17e0c82-48e2-4ac7-956e-259c5ab7c52c", "Admin", "Admin" },
-                    { "2", "5a8a163c-87d2-4599-999d-d4ffd0148146", "Customer", "Customer" }
+                    { "1", "1a4433c2-acb7-45cd-b774-9ea073aa1685", "Admin", "Admin" },
+                    { "2", "389841dd-385c-4d59-be6d-6a4b959661e7", "Customer", "Customer" }
                 });
 
             migrationBuilder.InsertData(
@@ -101,8 +101,8 @@ namespace BookShop.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "eef5f1af-d0c0-444d-8288-fe69fca939d3", "admin@gmail.com", false, false, null, null, "admin@gmail.com", "AQAAAAEAACcQAAAAEJ5sala6QCtPPf42KLdZVkQV+meTjNkygrnNDoJtOVM72CYaqfiy07Ihd2bVQssNhA==", null, false, "09877106-c48e-4ece-b265-003f912cbdc2", false, "admin@gmail.com" },
-                    { "2", 0, "6a36c2c5-6651-4268-bb1f-fc691276a6ea", "customer@gmail.com", false, false, null, null, "customer@gmail.com", null, null, false, "2f24a51a-c0d1-4c7d-b55e-def45725cdfb", false, "customer@gmail.com" }
+                    { "1", 0, "5f6a3cef-cd95-48b2-9198-fe2c7b9f7016", "admin@gmail.com", false, false, null, null, "admin@gmail.com", "AQAAAAEAACcQAAAAEM25Y0AQR723EDU+lL8+n2jO6E4kXwQVdR5H++0j3TnfTPgKX7T+CoEo5b0o0cB5dg==", null, false, "29aa3c8b-2848-4174-b6b5-34e0c4ca443e", false, "admin@gmail.com" },
+                    { "2", 0, "947dc7f1-99db-4f88-9010-c8350046fb2c", "customer@gmail.com", false, false, null, null, "customer@gmail.com", "AQAAAAEAACcQAAAAECD/Enn+q5u/Evmk0X8N2ceQWPLUaWgQDjwsY3Y9LLpMqV4v3fORQlEb+TCJxemaNw==", null, false, "728fa366-f5fc-4212-9734-a9955027af23", false, "customer@gmail.com" }
                 });
 
             migrationBuilder.InsertData(

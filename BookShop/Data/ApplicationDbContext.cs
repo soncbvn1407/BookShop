@@ -53,8 +53,18 @@ namespace BookShop.Data
         private void SeedRole(ModelBuilder builder)
         {
             builder.Entity<IdentityRole>().HasData(
-                new IdentityRole { Id = "1", Name = "Admin", NormalizedName = "Admin" },
-                new IdentityRole { Id = "2", Name = "Customer", NormalizedName = "Customer" }
+                new IdentityRole
+                {
+                    Id = "1",
+                    Name = "Admin",
+                    NormalizedName = "Admin"
+                },
+                new IdentityRole
+                {
+                    Id = "2",
+                    Name = "Customer",
+                    NormalizedName = "Customer"
+                }
                 );
         }
 
@@ -82,7 +92,7 @@ namespace BookShop.Data
 
             //set mật khẩu đã mã hóa cho từng user
             admin.PasswordHash = hasher.HashPassword(admin, "123456");
-            admin.PasswordHash = hasher.HashPassword(customer, "123456");
+            customer.PasswordHash = hasher.HashPassword(customer, "123456");
 
             //add 2 tài khoản test vào bảng user
             builder.Entity<IdentityUser>().HasData(admin, customer);

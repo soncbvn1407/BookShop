@@ -1,7 +1,10 @@
 ﻿using BookShop.Data;
 using BookShop.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 
 namespace BookShop.Controllers
 {
@@ -14,10 +17,35 @@ namespace BookShop.Controllers
             context = applicationDbContext;
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
+        {
+            return View(context.Order.OrderBy(o => o.Id).ToList());
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Accept(int id)
         {
             return View();
         }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Reject(int id)
+        {
+            return View();
+        }
+
+        //xoá dữ liệu từ bảng
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(int id)
+        {
+            var order = context.Book.Find(id);
+            context.Book.Remove(order);
+            context.SaveChanges();
+            TempData["Message"] = "Delete order successfully !";
+            return RedirectToAction("Index");
+        }
+
 
         //Action Post dùng để nhận dữ liệu từ form, xác thực dữ liệu
         //và lưu vào database nếu dữ liệu hợp lệ sau đó redirect về trang Index
