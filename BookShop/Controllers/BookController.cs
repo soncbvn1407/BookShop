@@ -34,6 +34,8 @@ namespace BookShop.Controllers
             return View(context.Book.ToList());
         }
 
+
+
         //xoá dữ liệu từ bảng
         [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)

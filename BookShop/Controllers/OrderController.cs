@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BookShop.Controllers
@@ -23,16 +24,48 @@ namespace BookShop.Controllers
             return View(context.Order.OrderBy(o => o.Id).ToList());
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Customer")]
+        public IActionResult Cart()
+        {
+            //
+            var od = context.Order.ToList();
+            List<Order> ods = new List<Order>();
+            foreach(var o in od)
+            {
+                if (o.UserEmail == User.Identity.Name)
+                {
+                    ods.Add(o);
+                }
+            }
+            return View(ods.ToList());
+        }
+
+        /*[Authorize(Roles = "Admin")]
         public IActionResult Accept(int id)
         {
-            return View();
-        }
+            var order = context.Order.Find(id);
+            order.Status = "Accept";
+
+            return RedirectToAction("Index");
+        } */
+    
 
         [Authorize(Roles = "Admin")]
         public IActionResult Reject(int id)
         {
             return View();
+        }
+
+        [Authorize(Roles = "Customer")]
+        public IActionResult Remove(int id)
+        {
+            var order = context.Order.Find(id);
+            var b = context.Book.Find(order.BookId);
+            b.Quantity = b.Quantity + order.OrderQuantity;
+            context.Order.Remove(order);
+            context.SaveChanges();
+            TempData["Message"] = "Cancel order successfully !";
+            return RedirectToAction("Cart");
         }
 
         //xoá dữ liệu từ bảng
