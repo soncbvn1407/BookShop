@@ -26,7 +26,7 @@
                         <td>@order.OrderQuantity</td>
                         <td class="text-danger">@order.OrderPrice $</td>
                         <td>@order.OrderDate</td>
-                        <td></td>
+                        <td class="text text-warning">@order.Status</td>
                         <td>
                             <a class="btn btn-warning text-white" asp-controller="Order" asp-action="Accept" asp-route-id="@order.Id">
                                 Accept

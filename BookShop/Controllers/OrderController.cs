@@ -21,6 +21,17 @@ namespace BookShop.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
+            var od = context.Order.ToList();
+
+            foreach (var o in od)
+            {
+                if (o.Status == null)
+                {
+                    o.Status = "Pending";
+                    context.Order.Update(o);
+                    context.SaveChanges();
+                }
+            }
             return View(context.Order.OrderBy(o => o.Id).ToList());
         }
 
@@ -30,7 +41,7 @@ namespace BookShop.Controllers
             //
             var od = context.Order.ToList();
             List<Order> ods = new List<Order>();
-            foreach(var o in od)
+            foreach (var o in od)
             {
                 if (o.UserEmail == User.Identity.Name)
                 {
@@ -40,22 +51,29 @@ namespace BookShop.Controllers
             return View(ods.ToList());
         }
 
-        /*[Authorize(Roles = "Admin")]
+        // Accept Order
+        [Authorize(Roles = "Admin")]
         public IActionResult Accept(int id)
         {
             var order = context.Order.Find(id);
             order.Status = "Accept";
-
+            context.Update(order);
+            context.SaveChanges();
             return RedirectToAction("Index");
-        } */
-    
+        }
 
+        // Reject Order
         [Authorize(Roles = "Admin")]
         public IActionResult Reject(int id)
         {
-            return View();
+            var order = context.Order.Find(id);
+            order.Status = "Reject";
+            context.Update(order);
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
+        // Cancel Order
         [Authorize(Roles = "Customer")]
         public IActionResult Remove(int id)
         {
@@ -75,9 +93,7 @@ namespace BookShop.Controllers
             var order = context.Order.Find(id);
             var b = context.Book.Find(order.BookId);
             b.Quantity = b.Quantity + order.OrderQuantity;
-            
-            
-            
+
             context.Order.Remove(order);
             context.SaveChanges();
             TempData["Message"] = "Delete order successfully !";

@@ -14,7 +14,7 @@ namespace BookShop.Models
 
         public string UserEmail { get; set; }
 
-        //public string Status { get; set; }
+        public string Status { get; set; }
 
         [Required]
         public int OrderQuantity { get; set; }

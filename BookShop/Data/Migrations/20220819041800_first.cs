@@ -72,6 +72,7 @@ namespace BookShop.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BookId = table.Column<int>(nullable: false),
                     UserEmail = table.Column<string>(nullable: true),
+                    Status = table.Column<string>(nullable: true),
                     OrderQuantity = table.Column<int>(nullable: false),
                     OrderPrice = table.Column<double>(nullable: false),
                     OrderDate = table.Column<DateTime>(nullable: false)
@@ -92,8 +93,8 @@ namespace BookShop.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "1", "1a4433c2-acb7-45cd-b774-9ea073aa1685", "Admin", "Admin" },
-                    { "2", "389841dd-385c-4d59-be6d-6a4b959661e7", "Customer", "Customer" }
+                    { "1", "a18c4794-244b-4fed-8234-adb50320ba84", "Admin", "Admin" },
+                    { "2", "2a724173-d370-4978-99b8-3b98126ffc06", "Customer", "Customer" }
                 });
 
             migrationBuilder.InsertData(
@@ -101,8 +102,8 @@ namespace BookShop.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "5f6a3cef-cd95-48b2-9198-fe2c7b9f7016", "admin@gmail.com", false, false, null, null, "admin@gmail.com", "AQAAAAEAACcQAAAAEM25Y0AQR723EDU+lL8+n2jO6E4kXwQVdR5H++0j3TnfTPgKX7T+CoEo5b0o0cB5dg==", null, false, "29aa3c8b-2848-4174-b6b5-34e0c4ca443e", false, "admin@gmail.com" },
-                    { "2", 0, "947dc7f1-99db-4f88-9010-c8350046fb2c", "customer@gmail.com", false, false, null, null, "customer@gmail.com", "AQAAAAEAACcQAAAAECD/Enn+q5u/Evmk0X8N2ceQWPLUaWgQDjwsY3Y9LLpMqV4v3fORQlEb+TCJxemaNw==", null, false, "728fa366-f5fc-4212-9734-a9955027af23", false, "customer@gmail.com" }
+                    { "1", 0, "f9c71925-2ce8-4d05-bffb-5a42754eb2eb", "admin@gmail.com", false, false, null, null, "admin@gmail.com", "AQAAAAEAACcQAAAAEMEdZy7uIPksrWTQZj0pv+wF3xz3mdsFP1ki3FO1q5ogj6lTi7a+O/1LhcBzEy4JaQ==", null, false, "48d75259-c3e1-47a0-b6c1-0899758b2c74", false, "admin@gmail.com" },
+                    { "2", 0, "4e9957d8-b227-45b0-a8fc-c066ed74816e", "customer@gmail.com", false, false, null, null, "customer@gmail.com", "AQAAAAEAACcQAAAAEPudtRO0Y6DQAs2gDYUQrxa9381s8MQzD2Ek5hQdBkLJftga007LV66tsEfKu5zbcA==", null, false, "3ceab8c0-6eab-4a48-994a-1ee33ad23cbf", false, "customer@gmail.com" }
                 });
 
             migrationBuilder.InsertData(

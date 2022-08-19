@@ -13,6 +13,8 @@
     <Compile Remove="Data\Migrations\20220817073221_first.Designer.cs" />
     <Compile Remove="Data\Migrations\20220817073830_first.cs" />
     <Compile Remove="Data\Migrations\20220817073830_first.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220818021418_first.cs" />
+    <Compile Remove="Data\Migrations\20220818021418_first.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

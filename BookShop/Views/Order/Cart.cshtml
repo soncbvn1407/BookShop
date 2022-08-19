@@ -24,7 +24,7 @@
                         <td>@od.OrderQuantity</td>
                         <td class="text-danger">@od.OrderPrice $</td>
                         <td>@od.OrderDate</td>
-                        <td></td>
+                        <td class="text text-warning">@od.Status</td>
                         <td>
                             <a class="btn btn-danger" asp-controller="Order" asp-action="Remove" asp-route-id="@od.Id"
                            onclick="    return confirm('Are you sure to delete this order ?');">
