@@ -19,7 +19,7 @@ namespace BookShop.Controllers
         
 
         //load toàn bộ dữ liệu từ bảng
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "StoreOwner")]
         public IActionResult Index()
         {
             //xếp book mới được hiển thị ở đầu danh sách (sort theo id giảm dần)
@@ -37,7 +37,7 @@ namespace BookShop.Controllers
 
 
         //xoá dữ liệu từ bảng
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "StoreOwner")]
         public IActionResult Delete(int id)
         {
             // tao object book 
@@ -49,7 +49,7 @@ namespace BookShop.Controllers
         }
 
         //xem thông tin theo id
-        [Authorize(Roles = "Admin, Customer")]
+        [Authorize(Roles = "StoreOwner")]
         public IActionResult Detail(int id)
         {
             var book = context.Book.Include(b => b.Category)  //Book - Category : M - 1

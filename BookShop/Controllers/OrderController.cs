@@ -18,7 +18,7 @@ namespace BookShop.Controllers
             context = applicationDbContext;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "StoreOwner")]
         public IActionResult Index()
         {
             var od = context.Order.ToList();
@@ -35,11 +35,14 @@ namespace BookShop.Controllers
             return View(context.Order.OrderBy(o => o.Id).ToList());
         }
 
+
+
         [Authorize(Roles = "Customer")]
         public IActionResult Cart()
         {
-            //
+            // Declare "od" to save all orders.
             var od = context.Order.ToList();
+            // Create a list to contain orders belonging to a user
             List<Order> ods = new List<Order>();
             foreach (var o in od)
             {
@@ -101,14 +104,14 @@ namespace BookShop.Controllers
         }
 
 
-        //Action Post dùng để nhận dữ liệu từ form, xác thực dữ liệu
-        //và lưu vào database nếu dữ liệu hợp lệ sau đó redirect về trang Index
+        //Action Post is used to receive data from the form, validate data
+        //and save it to the database if the data is valid then redirect to the Index page
         [HttpPost]
         public IActionResult Make(int id, int quantity)
         {
-            //tạo Order mới
+            //Create New Order
             var order = new Order();
-            //set giá trị trong từng thuộc tính của Order
+            //set value in each attribute of Order
             var book = context.Book.Find(id);
             order.Book = book;
             order.BookId = id;
@@ -116,16 +119,16 @@ namespace BookShop.Controllers
             order.OrderPrice = book.Price * quantity;
             order.OrderDate = DateTime.Now;
             order.UserEmail = User.Identity.Name;
-            //add Order vào DB
+            //add Order to DB
             context.Order.Add(order);
-            //trừ quantity của book
+            //minus book's quantity
             book.Quantity -= quantity;
             context.Book.Update(book);
-            //lưu cập nhật vào DB
+            //save update to DB
             context.SaveChanges();
-            //gửi về thông báo order thành công
+            //Send notification of order success
             TempData["Success"] = "Order book successfully !";
-            //redirect về trang book store
+            //redirect to book store page
             return RedirectToAction("Store", "Book");
         }
     }

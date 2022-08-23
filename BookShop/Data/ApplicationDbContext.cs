@@ -20,36 +20,19 @@ namespace BookShop.Data
         public DbSet<Detailed> Detailed { get; set; }
         public DbSet<Order> Order { get; set; }
 
-        //tạo code add dữ liệu ban đầu cho bảng
+        //create code to add initial data to the table
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             SeedCategory(builder);
             SeedBook(builder);
             SeedDetailed(builder);
-            //add dữ liệu cho 3 bảng: User, Role, UserRole
+            //add data for 3 tables: User, Role, UserRole
             //=> Authentication (Login/Logout) + Authorization (Role Assign)
             SeedUser(builder);
             SeedRole(builder);
             SeedUserRole(builder);
         }
-
-        private void SeedUserRole(ModelBuilder builder)
-        {
-            builder.Entity<IdentityUserRole<string>>().HasData(
-                new IdentityUserRole<string>
-                {
-                    UserId = "1",
-                    RoleId = "1"
-                },
-                new IdentityUserRole<string>
-                {
-                    UserId = "2",
-                    RoleId = "2"
-                }
-            );
-        }
-
         private void SeedRole(ModelBuilder builder)
         {
             builder.Entity<IdentityRole>().HasData(
@@ -64,10 +47,39 @@ namespace BookShop.Data
                     Id = "2",
                     Name = "Customer",
                     NormalizedName = "Customer"
+                },
+                new IdentityRole
+                {
+                    Id = "3",
+                    Name = "StoreOwner",
+                    NormalizedName = "StoreOwner"
                 }
                 );
         }
 
+
+        private void SeedUserRole(ModelBuilder builder)
+        {
+            builder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string>
+                {
+                    UserId = "1",
+                    RoleId = "1"
+                },
+                new IdentityUserRole<string>
+                {
+                    UserId = "2",
+                    RoleId = "2"
+                },
+                new IdentityUserRole<string>
+                {
+                    UserId = "3",
+                    RoleId = "3"
+                }
+            );
+        }
+
+       
         private void SeedUser(ModelBuilder builder)
         {
             //tạo tài khoản test cho admin & customer
@@ -87,15 +99,24 @@ namespace BookShop.Data
                 NormalizedUserName = "customer@gmail.com"
             };
 
+            var storeowner = new IdentityUser
+            {
+                Id = "3",
+                Email = "storeowner@gmail.com",
+                UserName = "storeowner@gmail.com",
+                NormalizedUserName = "storeowner@gmail.com"
+            };
+
             //khai báo thư viện để mã hóa mật khẩu cho user
             var hasher = new PasswordHasher<IdentityUser>();
 
             //set mật khẩu đã mã hóa cho từng user
             admin.PasswordHash = hasher.HashPassword(admin, "123456");
             customer.PasswordHash = hasher.HashPassword(customer, "123456");
+            storeowner.PasswordHash = hasher.HashPassword(storeowner, "123456");
 
             //add 2 tài khoản test vào bảng user
-            builder.Entity<IdentityUser>().HasData(admin, customer);
+            builder.Entity<IdentityUser>().HasData(admin, customer, storeowner);
         }
 
         private void SeedDetailed(ModelBuilder builder)
@@ -116,6 +137,7 @@ namespace BookShop.Data
                 {
                     Id = 1,
                     Name = "Batman: The Dark Knight Returns",
+                    Author = "Stephen King",
                     Price = 6399,
                     Quantity = 10,
                     CategoryId = 1,
@@ -126,6 +148,7 @@ namespace BookShop.Data
                 {
                     Id = 2,
                     Name = "Doctor Sleep",
+                    Author = "Stephen King",
                     Price = 4499,
                     Quantity = 30,
                     CategoryId = 2,
@@ -136,6 +159,7 @@ namespace BookShop.Data
                 {
                     Id = 3,
                     Name = "From Blood and Ash",
+                    Author = "Stephen King",
                     Price = 7999,
                     Quantity = 20,
                     CategoryId = 3,
@@ -146,6 +170,7 @@ namespace BookShop.Data
                 {
                     Id = 4,
                     Name = "The Awakening",
+                    Author = "Stephen King",
                     Price = 1999,
                     Quantity = 50,
                     CategoryId = 3,
@@ -156,6 +181,7 @@ namespace BookShop.Data
                 {
                     Id = 5,
                     Name = "Breath: The New Science of a Lost Art",
+                    Author = "Stephen King",
                     Price = 1622,
                     Quantity = 25,
                     CategoryId = 4,
@@ -166,6 +192,7 @@ namespace BookShop.Data
                 {
                     Id = 6,
                     Name = "Born to Run",
+                    Author = "Stephen King",
                     Price = 999,
                     Quantity = 15,
                     CategoryId = 4,
@@ -176,6 +203,7 @@ namespace BookShop.Data
                 {
                     Id = 7,
                     Name = "All Star Superman",
+                    Author = "Stephen King",
                     Price = 8199,
                     Quantity = 35,
                     CategoryId = 1,
@@ -186,6 +214,7 @@ namespace BookShop.Data
                 {
                     Id = 8,
                     Name = "Overkill",
+                    Author = "Stephen King",
                     Price = 2610,
                     Quantity = 45,
                     CategoryId = 5,
@@ -196,6 +225,7 @@ namespace BookShop.Data
                 {
                     Id = 9,
                     Name = "Pet Sematary",
+                    Author = "Stephen King",
                     Price = 1021,
                     Quantity = 5,
                     CategoryId = 2,
@@ -206,13 +236,14 @@ namespace BookShop.Data
                 {
                     Id = 10,
                     Name = "The 6:20 Man: A Thriller",
+                    Author = "Stephen King",
                     Price = 1539,
                     Quantity = 1,
                     CategoryId = 5,
                     Date = DateTime.Parse("02/01/2022"),
                     Image = "https://images-na.ssl-images-amazon.com/images/I/912F2fID5XL._AC_UL604_SR604,400_.jpg"
                 }
-                );
+                ); 
         }
 
         private void SeedCategory(ModelBuilder builder)

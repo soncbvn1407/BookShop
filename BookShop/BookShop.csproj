@@ -15,6 +15,14 @@
     <Compile Remove="Data\Migrations\20220817073830_first.Designer.cs" />
     <Compile Remove="Data\Migrations\20220818021418_first.cs" />
     <Compile Remove="Data\Migrations\20220818021418_first.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220819041800_first.cs" />
+    <Compile Remove="Data\Migrations\20220819041800_first.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220819160131_new.cs" />
+    <Compile Remove="Data\Migrations\20220819160131_new.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220820033436_abc.cs" />
+    <Compile Remove="Data\Migrations\20220820033436_abc.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220820050354_das.cs" />
+    <Compile Remove="Data\Migrations\20220820050354_das.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

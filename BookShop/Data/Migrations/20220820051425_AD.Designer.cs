@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220819041800_first")]
-    partial class first
+    [Migration("20220820051425_AD")]
+    partial class AD
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,9 @@ namespace BookShop.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Author")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -59,6 +62,7 @@ namespace BookShop.Data.Migrations
                         new
                         {
                             Id = 1,
+                            Author = "Stephen King",
                             CategoryId = 1,
                             Date = new DateTime(1997, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "https://upload.wikimedia.org/wikipedia/en/e/e9/Batman_The_Dark_Knight_Returns_%28film%29.jpg",
@@ -69,6 +73,7 @@ namespace BookShop.Data.Migrations
                         new
                         {
                             Id = 2,
+                            Author = "Stephen King",
                             CategoryId = 2,
                             Date = new DateTime(2013, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "https://img.thriftbooks.com/api/images/i/s/3775E4992634D153CA456BC6C572BA5138A1267D.jpg",
@@ -79,6 +84,7 @@ namespace BookShop.Data.Migrations
                         new
                         {
                             Id = 3,
+                            Author = "Stephen King",
                             CategoryId = 3,
                             Date = new DateTime(2020, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "https://m.media-amazon.com/images/I/51nh3JnQNsL.jpg",
@@ -89,6 +95,7 @@ namespace BookShop.Data.Migrations
                         new
                         {
                             Id = 4,
+                            Author = "Stephen King",
                             CategoryId = 3,
                             Date = new DateTime(2020, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "https://m.media-amazon.com/images/I/51XzxAUT5QS.jpg",
@@ -99,6 +106,7 @@ namespace BookShop.Data.Migrations
                         new
                         {
                             Id = 5,
+                            Author = "Stephen King",
                             CategoryId = 4,
                             Date = new DateTime(2020, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "https://images-na.ssl-images-amazon.com/images/I/81NygdDiGRL._AC_UL604_SR604,400_.jpg",
@@ -109,6 +117,7 @@ namespace BookShop.Data.Migrations
                         new
                         {
                             Id = 6,
+                            Author = "Stephen King",
                             CategoryId = 4,
                             Date = new DateTime(2011, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "https://images-na.ssl-images-amazon.com/images/I/81BAIsimy6L._AC_UL604_SR604,400_.jpg",
@@ -119,6 +128,7 @@ namespace BookShop.Data.Migrations
                         new
                         {
                             Id = 7,
+                            Author = "Stephen King",
                             CategoryId = 1,
                             Date = new DateTime(2011, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "https://upload.wikimedia.org/wikipedia/en/e/e9/Batman_The_Dark_Knight_Returns_%28film%29.jpg",
@@ -129,6 +139,7 @@ namespace BookShop.Data.Migrations
                         new
                         {
                             Id = 8,
+                            Author = "Stephen King",
                             CategoryId = 5,
                             Date = new DateTime(2022, 6, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "https://images-na.ssl-images-amazon.com/images/I/814dSvh3Q6L._AC_UL604_SR604,400_.jpg",
@@ -139,6 +150,7 @@ namespace BookShop.Data.Migrations
                         new
                         {
                             Id = 9,
+                            Author = "Stephen King",
                             CategoryId = 2,
                             Date = new DateTime(2017, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "https://m.media-amazon.com/images/P/1501156705.01._SCLZZZZZZZ_SX500_.jpg",
@@ -149,6 +161,7 @@ namespace BookShop.Data.Migrations
                         new
                         {
                             Id = 10,
+                            Author = "Stephen King",
                             CategoryId = 5,
                             Date = new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "https://images-na.ssl-images-amazon.com/images/I/912F2fID5XL._AC_UL604_SR604,400_.jpg",
@@ -318,16 +331,23 @@ namespace BookShop.Data.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "a18c4794-244b-4fed-8234-adb50320ba84",
+                            ConcurrencyStamp = "44893a60-c39a-4650-8901-8205a4a3cd3b",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "2a724173-d370-4978-99b8-3b98126ffc06",
+                            ConcurrencyStamp = "d2976916-3f28-4fd5-a26a-7849233e0da7",
                             Name = "Customer",
                             NormalizedName = "Customer"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            ConcurrencyStamp = "150c2be2-d5db-4bf5-ac24-2baf8085aef9",
+                            Name = "StoreOwner",
+                            NormalizedName = "StoreOwner"
                         });
                 });
 
@@ -424,14 +444,14 @@ namespace BookShop.Data.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f9c71925-2ce8-4d05-bffb-5a42754eb2eb",
+                            ConcurrencyStamp = "04af858a-2f2d-40c3-a44f-9ab7a479064d",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMEdZy7uIPksrWTQZj0pv+wF3xz3mdsFP1ki3FO1q5ogj6lTi7a+O/1LhcBzEy4JaQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENUVKqHf3R9Vb5ZyWrHQ5i7cyv6R9xAvX3Nd0KEgap/VoH3ZHuq1PSYkv+wQBBFfVw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "48d75259-c3e1-47a0-b6c1-0899758b2c74",
+                            SecurityStamp = "bc3bcc82-69b6-45f7-ab30-87bd0a794387",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -439,16 +459,31 @@ namespace BookShop.Data.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4e9957d8-b227-45b0-a8fc-c066ed74816e",
+                            ConcurrencyStamp = "e5070984-a533-4ee5-9e56-4a91fd9080c9",
                             Email = "customer@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "customer@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPudtRO0Y6DQAs2gDYUQrxa9381s8MQzD2Ek5hQdBkLJftga007LV66tsEfKu5zbcA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIBffqRPuzOwFlkWtIPxnRBhpVH3v6W/SBwpd1TD7hCZtgC9PAJlLyZIgiFRKWpQgg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3ceab8c0-6eab-4a48-994a-1ee33ad23cbf",
+                            SecurityStamp = "68798ef7-65cf-46f0-b163-445bdce48b32",
                             TwoFactorEnabled = false,
                             UserName = "customer@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "094180f0-5988-4158-ab83-b3b7037a84b0",
+                            Email = "storeowner@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "storeowner@gmail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGZQsSvrHh8o/P88sosFIGhQlnjL4ictSB0KGB0zKTX6y5jUXgtlQmtn6Y6029tzqA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "82981545-befb-4e89-b903-54050e579dd9",
+                            TwoFactorEnabled = false,
+                            UserName = "storeowner@gmail.com"
                         });
                 });
 
@@ -524,6 +559,11 @@ namespace BookShop.Data.Migrations
                         {
                             UserId = "2",
                             RoleId = "2"
+                        },
+                        new
+                        {
+                            UserId = "3",
+                            RoleId = "3"
                         });
                 });
 

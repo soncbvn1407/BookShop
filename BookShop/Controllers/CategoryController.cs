@@ -23,7 +23,7 @@ namespace BookShop.Controllers
             return View(context.Category.ToList());
         }
 
-        //xoá dữ liệu từ bảng
+        //delete data from table
         public IActionResult Delete(int id)
         {
             var category = context.Category.Find(id);
@@ -32,6 +32,7 @@ namespace BookShop.Controllers
             TempData["Message"] = "Delete category successfully !";
             return RedirectToAction("Index");
         }
+
 
         //xem thông tin theo id
         public IActionResult Detail(int id)
@@ -42,36 +43,36 @@ namespace BookShop.Controllers
             return View(category);
         }
 
-        //thêm dữ liệu vào bảng
-        //hàm 1: render ra view
+        //add data to the table
+        //function 1: render to view
         [HttpGet]
         public IActionResult Add()
         {
-            //đẩy danh sách của detailed sang bảng Add Category
+            //push the list of detailed to the Add Category . panel
             ViewBag.Detailes = context.Detailed.ToList();
             return View();
         }
 
-        //hàm 2: nhận và xử lý dữ liệu được gửi từ form
+        //function 2: receive and process data sent from form
         [HttpPost]
         public IActionResult Add(Category category)
         {
-            //check tính hợp lệ của dữ liệu 
+            //check data validity
             if (ModelState.IsValid)
             {
-                //add dữ liệu vào DB
+                //add data to DB
                 context.Add(category);
                 context.SaveChanges();
-                //hiển thị thông báo thành công về view
+                //show success message about view
                 TempData["Message"] = "Add category successfully !";
-                //quay ngược về trang index
+                //back to index page
                 return RedirectToAction(nameof(Index));
             }
-            //nếu dữ liệu không hợp lệ thì trả về form để nhập lại
+            //If the data is not valid, return the form to re-enter
             return View(category);
         }
 
-        //sửa dữ liệu của bảng
+        //edit table data
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -82,18 +83,18 @@ namespace BookShop.Controllers
         [HttpPost]
         public IActionResult Edit(Category category)
         {
-            //check tính hợp lệ của dữ liệu 
+            //check data validity
             if (ModelState.IsValid)
             {
-                //update dữ liệu vào DB
+                //update data to Database
                 context.Update(category);
                 context.SaveChanges();
-                //hiển thị thông báo thành công về view
+                //show success message about view
                 TempData["Message"] = "Edit category successfully !";
-                //quay ngược về trang index
+                //back to index page
                 return RedirectToAction(nameof(Index));
             }
-            //nếu dữ liệu không hợp lệ thì trả về form để nhập lại
+            //If the data is not valid, return the form to re-enter
             return View(category);
         }
     }
